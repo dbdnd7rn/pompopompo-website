@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PompoPompo - Campus Food Delivery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <span>🍔</span>
+      <h1>Pompo Pompo</h1>
+    </div>
+    <div class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#universities">Universities</a>
+      <a href="#business">For Businesses</a>
+      <a href="#" onclick="showOrderTracking(); return false;" id="orders-link">My Orders</a>
+    </div>
+    <div class="auth-buttons">
+      <button class="login-btn" id="login-button">Login</button>
+      <button class="signup-btn" id="signup-button">Sign Up</button>
+      <div id="user-profile">
+        <span>Welcome, User!</span>
+        <button onclick="showProfileModal()">Profile</button>
+        <button onclick="logout()">Logout</button>
+      </div>
+      <div class="cart-icon" onclick="toggleCart()">
+        <span>🛒</span>
+        <span id="cart-count">0</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Hungry? <span>Scroll & Order</span> with PompoPompo!</h1>
+      <p>Discover campus food from MUST and other universities</p>
+      <div class="app-badges">
+        <div class="badge-placeholder">Google Play</div>
+        <div class="badge-placeholder">App Store</div>
+      </div>
+    </div>
+    <div class="hero-preview">
+      <div class="phone-mockup">
+        <div class="mockup-screen">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Food preview">
+          <div class="mockup-overlay">
+            <h3>MUST Cafeteria</h3>
+            <p>🍕 Veggie Pizza - MK 2,800</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+    <h2>How PompoPompo Works</h2>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Scroll Videos</h3>
+        <p>Discover food from campus cafes in TikTok-style feed</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Tap to Order</h3>
+        <p>Select items directly from the video</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Track Delivery</h3>
+        <p>Real-time updates until food arrives</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Feed Preview -->
+  <section class="video-feed-preview">
+    <h2>Trending Now at MUST</h2>
+    <div class="food-grid">
+      <div class="food-card">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Chicken Wings">
+        <div class="food-info">
+          <h3>MUST Grill</h3>
+          <p>🍗 Spicy Wings + Chips - MK 3,500</p>
+          <button class="order-btn" onclick="addToCart('Spicy Wings + Chips', 'MK 3,500', 'MUST Grill')">Order Now</button>
+        </div>
+      </div>
+      <div class="food-card">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Pizza">
+        <div class="food-info">
+          <h3>MUST Cafeteria</h3>
+          <p>🍕 Veggie Pizza - MK 2,800</p>
+          <button class="order-btn" onclick="addToCart('Veggie Pizza', 'MK 2,800', 'MUST Cafeteria')">Order Now</button>
+        </div>
+      </div>
+      <div class="food-card">
+        <img src="https://images.unsplash.com/photo-1559715745-e1b33a271c8f" alt="Burger">
+        <div class="food-info">
+          <h3>Tech Bites</h3>
+          <p>🍔 Double Burger - MK 2,200</p>
+          <button class="order-btn" onclick="addToCart('Double Burger', 'MK 2,200', 'Tech Bites')">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Universities Section -->
+  <section id="universities" class="universities">
+    <h2>Available Campuses</h2>
+    <p>Select a university to view its restaurants</p>
+    
+    <div class="university-tabs">
+      <button class="uni-tab active" onclick="switchUniversity('must')">MUST</button>
+      <button class="uni-tab" onclick="switchUniversity('unima')">UNIMA</button>
+      <button class="uni-tab" onclick="switchUniversity('mubas')">MUBAS</button>
+      <button class="uni-tab" onclick="switchUniversity('kuhes')">KUHES</button>
+    </div>
+    
+    <!-- MUST Content -->
+    <div class="uni-content active" id="must-content">
+      <h3>Malawi University of Science and Technology</h3>
+      <div class="restaurant-grid">
+        <div class="restaurant-card">
+          <div class="restaurant-img">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0" alt="Restaurant">
+          </div>
+          <div class="restaurant-info">
+            <h3>MUST Grill</h3>
+            <p>Grilled foods, snacks, and beverages</p>
+            <button class="view-restaurant">View Restaurant</button>
+          </div>
+        </div>
+        <div class="restaurant-card">
+          <div class="restaurant-img">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurant">
+          </div>
+          <div class="restaurant-info">
+            <h3>Science Cafe</h3>
+            <p>Breakfast, lunch, and coffee</p>
+            <button class="view-restaurant">View Restaurant</button>
+          </div>
+        </div>
+        <div class="restaurant-card">
+          <div class="restaurant-img">
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Restaurant">
+          </div>
+          <div class="restaurant-info">
+            <h3>Tech Bites</h3>
+            <p>Fast food and snacks</p>
+            <button class="view-restaurant">View Restaurant</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Other university contents -->
+    <div class="uni-content" id="unima-content">
+      <h3>University of Malawi</h3>
+      <p>Coming soon to UNIMA! Check back later.</p>
+    </div>
+    
+    <div class="uni-content" id="mubas-content">
+      <h3>Malawi University of Business and Applied Sciences</h3>
+      <p>Coming soon to MUBAS! Check back later.</p>
+    </div>
+    
+    <div class="uni-content" id="kuhes-content">
+      <h3>Kamuzu University of Health Sciences</h3>
+      <p>Coming soon to KUHES! Check back later.</p>
+    </div>
+  </section>
+
+  <!-- Business CTA -->
+  <section id="business" class="business-cta">
+    <div class="business-content">
+      <h2>List Your Restaurant</h2>
+      <p>Join Malawi's most innovative food platform</p>
+      <form id="business-form">
+        <input type="text" placeholder="Restaurant Name" required>
+        <input type="email" placeholder="Contact Email" required>
+        <button type="submit">Get Started →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span>🍔</span>
+        <h2>PompoPompo</h2>
+      </div>
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2023 PompoPompo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Login/Signup Modals -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('login-modal')">×</button>
+      <h2>Login to PompoPompo</h2>
+      <form id="login-form">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <div class="modal-footer">
+        <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="signup-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('signup-modal')">×</button>
+      <h2>Create Account</h2>
+      <form id="signup-form">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password (min 6 characters)" required>
+        <button type="submit">Create Account</button>
+      </form>
+      <div class="modal-footer">
+        <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Tracking Modal -->
+  <div id="order-tracking-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('order-tracking-modal')">×</button>
+      <h2>Your Orders</h2>
+      <div id="orders-container">
+        <div class="no-orders">
+          <p>You haven't placed any orders yet.</p>
+          <button onclick="closeModal('order-tracking-modal')">Browse Food</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Sidebar -->
+  <div id="cart-sidebar">
+    <div class="cart-header">
+      <h2>Your Order</h2>
+      <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+    <div id="cart-items">
+      <div class="empty-cart">
+        <p>Your cart is empty</p>
+        <button onclick="toggleCart()">Browse Food</button>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <h3>Total: MK <span id="cart-total">0.00</span></h3>
+      </div>
+      <button id="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
