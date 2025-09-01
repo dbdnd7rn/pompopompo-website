@@ -5,216 +5,272 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PompoPompo - Campus Food Delivery</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">
-      <span>🍔</span>
-      <h1>Pompo Pompo</h1>
-    </div>
-    <div class="nav-links">
-      <a href="#how-it-works">How It Works</a>
-      <a href="#universities">Universities</a>
-      <a href="#business">For Businesses</a>
-      <a href="#" onclick="showOrderTracking(); return false;" id="orders-link">My Orders</a>
-    </div>
-    <div class="auth-buttons">
-      <button class="login-btn" id="login-button">Login</button>
-      <button class="signup-btn" id="signup-button">Sign Up</button>
-      <div id="user-profile">
-        <span>Welcome, User!</span>
-        <button onclick="showProfileModal()">Profile</button>
-        <button onclick="logout()">Logout</button>
+  <header>
+    <nav>
+      <div class="logo">
+        <span>🍔</span>
+        <h1>Pompo Pompo</h1>
       </div>
-      <div class="cart-icon" onclick="toggleCart()">
-        <span>🛒</span>
-        <span id="cart-count">0</span>
+      <div class="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#restaurants">Restaurants</a>
+        <a href="#universities">Universities</a>
+        <a href="#business">For Businesses</a>
+        <a href="#" onclick="showOrderTracking(); return false;" id="orders-link">My Orders</a>
       </div>
-    </div>
-  </nav>
+      <div class="auth-buttons">
+        <button class="login-btn" id="login-button">Login</button>
+        <button class="signup-btn" id="signup-button">Sign Up</button>
+        <div id="user-profile">
+          <span>Welcome, User!</span>
+          <button onclick="showProfileModal()">Profile</button>
+          <button onclick="logoutUser()">Logout</button>
+        </div>
+        <div class="cart-icon" onclick="toggleCart()">
+          <span>🛒</span>
+          <span id="cart-count">0</span>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Hungry? <span>Scroll & Order</span> with PompoPompo!</h1>
-      <p>Discover campus food from MUST and other universities</p>
-      <div class="app-badges">
-        <div class="badge-placeholder">Google Play</div>
-        <div class="badge-placeholder">App Store</div>
-      </div>
-    </div>
-    <div class="hero-preview">
-      <div class="phone-mockup">
-        <div class="mockup-screen">
-          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Food preview">
-          <div class="mockup-overlay">
-            <h3>MUST Cafeteria</h3>
-            <p>🍕 Veggie Pizza - MK 2,800</p>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Hungry? <span>Scroll & Order</span> with PompoPompo!</h1>
+        <p>Discover the best campus food from MUST and other universities</p>
+        
+        <div class="hero-controls">
+          <div class="uni-select-dropdown">
+            <select id="university-selector" name="university">
+              <option value="must">Malawi University of Science and Technology (MUST)</option>
+              <option value="unima">University of Malawi (UNIMA)</option>
+              <option value="mubas">Malawi University of Business and Applied Sciences (MUBAS)</option>
+              <option value="mzuni">Mzuzu University (MZUNI)</option>
+              <option value="luana">Lilongwe University of Agriculture and Natural Resources (LUANAR)</option>
+            </select>
+          </div>
+          <div class="search-bar">
+            <input type="text" id="restaurant-search" placeholder="Search for food or restaurants...">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+
+        <div class="app-badges">
+          <div class="badge">
+            <i class="fab fa-google-play"></i>
+            <span>Google Play</span>
+          </div>
+          <div class="badge">
+            <i class="fab fa-apple"></i>
+            <span>App Store</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section id="how-it-works" class="how-it-works">
-    <h2>How PompoPompo Works</h2>
-    <div class="steps">
-      <div class="step-card">
-        <div class="step-number">1</div>
-        <h3>Scroll Videos</h3>
-        <p>Discover food from campus cafes in TikTok-style feed</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">2</div>
-        <h3>Tap to Order</h3>
-        <p>Select items directly from the video</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">3</div>
-        <h3>Track Delivery</h3>
-        <p>Real-time updates until food arrives</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Video Feed Preview -->
-  <section class="video-feed-preview">
-    <h2>Trending Now at MUST</h2>
-    <div class="food-grid">
-      <div class="food-card">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Chicken Wings">
-        <div class="food-info">
-          <h3>MUST Grill</h3>
-          <p>🍗 Spicy Wings + Chips - MK 3,500</p>
-          <button class="order-btn" onclick="addToCart('Spicy Wings + Chips', 'MK 3,500', 'MUST Grill')">Order Now</button>
+      <div class="hero-preview">
+        <div class="phone-mockup">
+          <div class="mockup-screen">
+            <div class="food-slide active">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Pizza">
+              <div class="slide-overlay">
+                <h3>MUST Cafeteria</h3>
+                <p>🍕 Veggie Pizza - MK 2,800</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="food-card">
-        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Pizza">
-        <div class="food-info">
-          <h3>MUST Cafeteria</h3>
-          <p>🍕 Veggie Pizza - MK 2,800</p>
-          <button class="order-btn" onclick="addToCart('Veggie Pizza', 'MK 2,800', 'MUST Cafeteria')">Order Now</button>
-        </div>
-      </div>
-      <div class="food-card">
-        <img src="https://images.unsplash.com/photo-1559715745-e1b33a271c8f" alt="Burger">
-        <div class="food-info">
-          <h3>Tech Bites</h3>
-          <p>🍔 Double Burger - MK 2,200</p>
-          <button class="order-btn" onclick="addToCart('Double Burger', 'MK 2,200', 'Tech Bites')">Order Now</button>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Universities Section -->
-  <section id="universities" class="universities">
-    <h2>Available Campuses</h2>
-    <p>Select a university to view its restaurants</p>
-    
-    <div class="university-tabs">
-      <button class="uni-tab active" onclick="switchUniversity('must')">MUST</button>
-      <button class="uni-tab" onclick="switchUniversity('unima')">UNIMA</button>
-      <button class="uni-tab" onclick="switchUniversity('mubas')">MUBAS</button>
-      <button class="uni-tab" onclick="switchUniversity('kuhes')">KUHES</button>
-    </div>
-    
-    <!-- MUST Content -->
-    <div class="uni-content active" id="must-content">
-      <h3>Malawi University of Science and Technology</h3>
-      <div class="restaurant-grid">
+    <section id="how-it-works" class="how-it-works">
+      <h2>How PompoPompo Works</h2>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-icon">
+            <i class="fas fa-scroll"></i>
+          </div>
+          <h3>Scroll Videos</h3>
+          <p>Discover food from campus cafes in TikTok-style feed</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3>Tap to Order</h3>
+          <p>Select items directly from the video with one tap</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <h3>Track Delivery</h3>
+          <p>Real-time updates until food arrives at your door</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="restaurants" class="featured-restaurants">
+      <h2>Featured Restaurants</h2>
+      <div class="restaurant-grid" id="restaurant-list">
         <div class="restaurant-card">
-          <div class="restaurant-img">
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0" alt="Restaurant">
+          <div class="restaurant-image">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="MUST Grill">
+            <div class="rating">4.5 ★</div>
           </div>
           <div class="restaurant-info">
             <h3>MUST Grill</h3>
             <p>Grilled foods, snacks, and beverages</p>
-            <button class="view-restaurant">View Restaurant</button>
+            <div class="delivery-info">
+              <span>25-35 min • MK 500 delivery</span>
+            </div>
+            <button class="view-menu-btn" data-restaurant-id="must-grill">View Menu</button>
           </div>
         </div>
+        
         <div class="restaurant-card">
-          <div class="restaurant-img">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurant">
+          <div class="restaurant-image">
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Science Cafe">
+            <div class="rating">4.2 ★</div>
           </div>
           <div class="restaurant-info">
             <h3>Science Cafe</h3>
             <p>Breakfast, lunch, and coffee</p>
-            <button class="view-restaurant">View Restaurant</button>
-          </div>
-        </div>
-        <div class="restaurant-card">
-          <div class="restaurant-img">
-            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Restaurant">
-          </div>
-          <div class="restaurant-info">
-            <h3>Tech Bites</h3>
-            <p>Fast food and snacks</p>
-            <button class="view-restaurant">View Restaurant</button>
+            <div class="delivery-info">
+              <span>20-30 min • MK 400 delivery</span>
+            </div>
+            <button class="view-menu-btn" data-restaurant-id="science-cafe">View Menu</button>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- Other university contents -->
-    <div class="uni-content" id="unima-content">
-      <h3>University of Malawi</h3>
-      <p>Coming soon to UNIMA! Check back later.</p>
-    </div>
-    
-    <div class="uni-content" id="mubas-content">
-      <h3>Malawi University of Business and Applied Sciences</h3>
-      <p>Coming soon to MUBAS! Check back later.</p>
-    </div>
-    
-    <div class="uni-content" id="kuhes-content">
-      <h3>Kamuzu University of Health Sciences</h3>
-      <p>Coming soon to KUHES! Check back later.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Business CTA -->
-  <section id="business" class="business-cta">
-    <div class="business-content">
-      <h2>List Your Restaurant</h2>
-      <p>Join Malawi's most innovative food platform</p>
-      <form id="business-form">
-        <input type="text" placeholder="Restaurant Name" required>
-        <input type="email" placeholder="Contact Email" required>
-        <button type="submit">Get Started →</button>
-      </form>
-    </div>
-  </section>
+    <section id="universities" class="universities">
+      <h2>Available Campuses</h2>
+      <p>Select a university to view its restaurants</p>
+      
+      <div class="university-tabs">
+        <button class="uni-tab active" data-university="must">
+          <i class="fas fa-graduation-cap"></i>
+          MUST
+        </button>
+        <button class="uni-tab" data-university="unima">
+          <i class="fas fa-book"></i>
+          UNIMA
+        </button>
+        <button class="uni-tab" data-university="mubas">
+          <i class="fas fa-chart-line"></i>
+          MUBAS
+        </button>
+        <button class="uni-tab" data-university="mzuni">
+          <i class="fas fa-flask"></i>
+          MZUNI
+        </button>
+        <button class="uni-tab" data-university="luana">
+          <i class="fas fa-seedling"></i>
+          LUANAR
+        </button>
+      </div>
+      
+      <div class="uni-content active" id="must-content">
+        <h3>Malawi University of Science and Technology</h3>
+        <div class="campus-info">
+          <p>Discover the best food spots around MUST campus</p>
+        </div>
+      </div>
+      
+      <div class="uni-content" id="unima-content">
+        <h3>University of Malawi</h3>
+        <p>Coming soon to UNIMA! Check back later.</p>
+      </div>
+      
+      <div class="uni-content" id="mubas-content">
+        <h3>Malawi University of Business and Applied Sciences</h3>
+        <p>Coming soon to MUBAS! Check back later.</p>
+      </div>
+      
+      <div class="uni-content" id="mzuni-content">
+        <h3>Mzuzu University</h3>
+        <p>Coming soon to MZUNI! Check back later.</p>
+      </div>
+      
+      <div class="uni-content" id="luana-content">
+        <h3>Lilongwe University of Agriculture and Natural Resources</h3>
+        <p>Coming soon to LUANAR! Check back later.</p>
+      </div>
+    </section>
 
-  <!-- Footer -->
+    <section id="business" class="business-cta">
+      <div class="business-content">
+        <h2>List Your Restaurant on PompoPompo</h2>
+        <p>Join Malawi's fastest growing campus food platform and reach thousands of students</p>
+        <form id="business-form">
+          <input type="text" placeholder="Restaurant Name" required>
+          <input type="email" placeholder="Contact Email" required>
+          <input type="tel" placeholder="Phone Number">
+          <button type="submit">Get Started →</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
   <footer>
     <div class="footer-content">
-      <div class="footer-logo">
-        <span>🍔</span>
-        <h2>PompoPompo</h2>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>🍔</span>
+          <h2>PompoPompo</h2>
+        </div>
+        <p>Delivering campus food experiences, one order at a time</p>
       </div>
+      
       <div class="footer-links">
-        <a href="#">About Us</a>
-        <a href="#">Careers</a>
-        <a href="#">Contact</a>
+        <div class="link-group">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="link-group">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">FAQs</a>
+          <a href="#">Delivery Areas</a>
+        </div>
+        <div class="link-group">
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Refund Policy</a>
+        </div>
       </div>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">Twitter</a>
+      
+      <div class="footer-newsletter">
+        <h4>Stay Updated</h4>
+        <p>Get the latest updates and offers</p>
+        <form id="newsletter-form">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
-    <div class="copyright">
-      <p>© 2023 PompoPompo. All rights reserved.</p>
+    
+    <div class="footer-bottom">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2023 PompoPompo. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
-  <!-- Login/Signup Modals -->
   <div id="login-modal" class="modal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('login-modal')">×</button>
@@ -226,6 +282,7 @@
       </form>
       <div class="modal-footer">
         <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+        <a href="#" onclick="showForgotPassword()">Forgot password?</a>
       </div>
     </div>
   </div>
@@ -238,6 +295,7 @@
         <input type="text" placeholder="Full Name" required>
         <input type="email" placeholder="Email" required>
         <input type="password" placeholder="Password (min 6 characters)" required>
+        <input type="tel" placeholder="Phone Number (optional)">
         <button type="submit">Create Account</button>
       </form>
       <div class="modal-footer">
@@ -246,21 +304,27 @@
     </div>
   </div>
 
-  <!-- Order Tracking Modal -->
-  <div id="order-tracking-modal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('order-tracking-modal')">×</button>
-      <h2>Your Orders</h2>
-      <div id="orders-container">
-        <div class="no-orders">
-          <p>You haven't placed any orders yet.</p>
-          <button onclick="closeModal('order-tracking-modal')">Browse Food</button>
+  <div id="menu-modal" class="modal">
+    <div class="modal-content large-modal">
+      <button class="modal-close" onclick="closeModal('menu-modal')">×</button>
+      <h2 id="menu-modal-title"></h2>
+      <p id="menu-modal-subtitle"></p>
+      <div id="menu-modal-items" class="menu-items-grid">
+        <div class="menu-item-card">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Item Name">
+          <div class="item-info">
+            <h4>Veggie Pizza</h4>
+            <p>Fresh vegetables and mozzarella cheese on a crispy crust.</p>
+            <div class="item-price-add">
+              <span>MK 2,800</span>
+              <button class="add-to-cart-btn"><i class="fas fa-plus"></i> Add</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Shopping Cart Sidebar -->
   <div id="cart-sidebar">
     <div class="cart-header">
       <h2>Your Order</h2>
@@ -268,19 +332,30 @@
     </div>
     <div id="cart-items">
       <div class="empty-cart">
+        <i class="fas fa-shopping-cart"></i>
         <p>Your cart is empty</p>
         <button onclick="toggleCart()">Browse Food</button>
       </div>
     </div>
     <div class="cart-footer">
-      <div class="cart-total">
-        <h3>Total: MK <span id="cart-total">0.00</span></h3>
+      <div class="cart-summary">
+        <div class="cart-total">
+          <span>Subtotal:</span>
+          <span>MK <span id="cart-subtotal">0.00</span></span>
+        </div>
+        <div class="delivery-fee">
+          <span>Delivery fee:</span>
+          <span>MK <span id="delivery-fee">500.00</span></span>
+        </div>
+        <div class="cart-grand-total">
+          <span>Total:</span>
+          <span>MK <span id="cart-total">0.00</span></span>
+        </div>
       </div>
       <button id="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
